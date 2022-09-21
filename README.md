@@ -14,10 +14,10 @@ tcp contains "password"
 ```
 
 dari filter tersebut didapatkan <br />
-![hasil-filter](https://media.discordapp.net/attachments/964890423946543124/1022121998157099018/unknown.png)
+![hasil-filter](https://media.discordapp.net/attachments/964890423946543124/1022121998157099018/unknown.png) <br />
 setelah itu dilakukan klik kanan dan `Follow TCP Stream`. <br />
 Didapatkan informasi berupa: <br />
-![informasi-1](https://media.discordapp.net/attachments/964890423946543124/1022124012261883944/unknown.png)
+![informasi-1](https://media.discordapp.net/attachments/964890423946543124/1022124012261883944/unknown.png) <br />
 
 Dari hasil tersebut didapatkan informasi penting terkait password, bentuk file yang dienkripsi yaitu `salt`, cara melakukan decrypt yaitu dengan `OpenSSL` dan `port 9002`. <br />
 Untuk itu, dilakukan filter kedua dengan:
@@ -25,7 +25,7 @@ Untuk itu, dilakukan filter kedua dengan:
 tcp.port == 9002
 ```
 Dari situ didapatkan informasi penting lagi berupa detail passwordnya <br />
-![password](https://media.discordapp.net/attachments/964890423946543124/1022123763820671008/unknown.png)
+![password](https://media.discordapp.net/attachments/964890423946543124/1022123763820671008/unknown.png) <br />
 
 ## Soal 9
 Dari informasi diatas, didapatkan informasi yaitu filenya merupakan salt, karena salt memiliki format `Salted__` maka saya coba filter:
@@ -33,9 +33,9 @@ Dari informasi diatas, didapatkan informasi yaitu filenya merupakan salt, karena
 tcp contains "Salted"
 ```
 dari filter tersebut didapatkan <br />
-![salted](https://media.discordapp.net/attachments/964890423946543124/1022124757988167701/unknown.png)
+![salted](https://media.discordapp.net/attachments/964890423946543124/1022124757988167701/unknown.png) <br />
 karena setelah dilakukan `Follow TCP Stream` didapatkan <br />
-![file-salted](https://media.discordapp.net/attachments/964890423946543124/1022125269311553636/unknown.png)
+![file-salted](https://media.discordapp.net/attachments/964890423946543124/1022125269311553636/unknown.png) <br >
 maka dilakukan export raw file tersebut dalam bentuk `.bytes` dan disimpan dalam bentuk `.des3` <br />
 ![des3](https://media.discordapp.net/attachments/964890423946543124/1022126165382672424/unknown.png) <br /><br />
 
@@ -44,7 +44,7 @@ Kemudian file di decrypt dengan `OpenSSL` sesuai perintah pada percakapan yaitu 
 openssl des3 -d -salt -in c06.des3 -out flag.txt -k nakano
 ```
 karena windows tidak bisa menjalankan command OpenSSL maka menggunakan WSL untuk melakukan decrypt, yaitu sebagai berikut: <br />
-![decrypt](https://media.discordapp.net/attachments/964890423946543124/1022127452186759238/unknown.png)
+![decrypt](https://media.discordapp.net/attachments/964890423946543124/1022127452186759238/unknown.png) <br />
 Akhirnya, didapatkan flag yaitu: 
 ```
 JaRkOm2022{8uK4N_CtF_k0k_h3h3h3}
