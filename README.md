@@ -65,6 +65,59 @@ tcp.dstport == 80 or udp.dstport == 80
 sehingga dari filter tersebut didapatkan paket-paket yang menuju port 80 (terdiri dari protokol TCP dan HTTP dari source yang sama):
 ![hasil-filter](https://cdn.discordapp.com/attachments/855800698602913792/1022154938375209000/unknown.png)
 
+## Soal 4
+Mahasiswa diminta untuk mencari informasi dari file `.pcap` yang diberikan.
+Untuk itu, diterapkan filter dengan protokol `tcp` dan `udp` karena pada soal tidak dispesifikasikan untuk jenis protokol apa. Lalu, filter dua protokol tersebut diperjelas dengan detail yang mengambil paket yang berasal dari port 21 (dengan subdomain `srcport`), sehingga filternya menjadi:
+```
+tcp.srcport == 21 or udp.srcport == 21
+```
+
+Sehingga hasil dari filter tersebut didapatkan paket yang berasal dari port 21
+![hasil-filter-soal4](https://user-images.githubusercontent.com/87472508/191672636-6f511fab-c34f-4e61-88ff-c28be1d07f9f.png)
+
+## Soal 5
+Mahasiswa diminta untuk mencari informasi dari file `.pcap` yang diberikan.
+Untuk itu, diterapkan filter dengan protokol `tcp` dan `udp` karena pada soal tidak dispesifikasikan untuk jenis protokol apa. Lalu, filter dua protokol tersebut diperjelas dengan detail yang mengambil paket yang berasal dari port 443 (dengan subdomain `srcport`), sehingga filternya menjadi:
+```
+tcp.srcport == 443 or udp.srcport == 443
+```
+
+Sehingga hasil dari filter tersebut didapatkan paket yang berasal dari port 443
+![hasil-filter-soal5](https://user-images.githubusercontent.com/87472508/191673089-ebac302b-43d5-40ef-8c31-d2f78b4985d5.png)
+
+## Soal 6
+Mahasiswa diminta untuk mencari informasi paket yang menuju ke lipi.go.id dari file `.pcap` yang diberikan.
+Dikarenakan didalam soal yang diketahui hanya DNS-nya, maka sebelumnya harus mencari ip dari DNS tersebut, dengan cara membuka `cmd` atau `terminal`, lalu tuliskan:
+```
+ping lipi.go.id
+```
+nantinya akan mendapatkan ip dari DNS lipi.go.id
+![hasil-ping](https://user-images.githubusercontent.com/87472508/191674395-2469572f-046d-41ef-b724-23c78916c896.png)
+
+Setelah itu, mencari paket-paket yang menuju ke lipi.go.id dengan menggunakan `ip` dan subdomain `dst`, sehingga filternya menjadi:
+```
+ip.dst == 203.160.128.158
+```
+Sehingga hasil dari filter tersebut didapatkan paket yang menuju ip 203.160.128.158 atau menuju website lipi.go.id.
+![hasil-filter-soal6](https://user-images.githubusercontent.com/87472508/191675242-4f013cd3-4cf8-4878-bffa-52274096965e.png)
+
+## Soal 7
+Mahasiswa diminta untuk mencari informasi paket yang berasal dari ip komputer sendiri.
+Untuk mencari ip dari komputer sendiri, dapat dilakukan dengan cara membuka `cmd` atau `terminal`, lalu tulis command:
+```
+ipconfig
+```
+nantinya akan mendapatkan ip dari komputer.
+
+![hasil-ipconfig](https://user-images.githubusercontent.com/87472508/191676604-5f74d498-6bc6-40bd-8515-9500229c3249.png)
+
+Setelah itu, mencari paket-paket yang berasal dari ip komputer kita, sehingga filternya menjadi:
+```
+src host 192.168.2.22
+```
+Sehingga hasil dari filter tersebut didapatkan paket yang berasal dari ip 192.168.2.22
+![hasil-filter-soal7](https://user-images.githubusercontent.com/87472508/191677040-c8f55ad9-be54-4763-8597-e47721f77c95.png)
+
 ## Soal 8
 
 Mahasiswa diminta untuk mencari informasi dari file `.pcap` yang diberikan. Diberikan clue berupa `percakapan tersebut dilaporkan menggunakan protokol jaringan dengan tingkat keandalan yang tinggi dalam pertukaran datanya sehingga kalian perlu menerapkan filter dengan protokol yang tersebut`. <br />
